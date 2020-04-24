@@ -18,6 +18,11 @@ namespace NETToolBox.SFTPClient
             _internalClient.Connect();
         }
 
+        public void DeleteFile(string path)
+        {
+            _internalClient.Delete(path);
+        }
+
         public void Disconnect()
         {
             _internalClient.Disconnect();
