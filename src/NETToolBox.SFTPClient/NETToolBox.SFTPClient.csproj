@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RepositoryUrl>https://github.com/npnelson/SFTPClient</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Just a simplified wrapper around SSH.NET SFTPClient with Async extensions that provides ISftpClient interface to facilitate mocking in tests</Description>
+    <Authors>npnelson</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Renci.SshNet.Async" Version="1.4.0" />
+  </ItemGroup>
+
+</Project>
