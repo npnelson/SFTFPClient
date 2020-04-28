@@ -9,9 +9,9 @@ namespace NETToolBox.SFTPClient
     public sealed class SftpClient : ISftpClient
     {
         private readonly Renci.SshNet.SftpClient _internalClient;
-        public SftpClient(string host, string userName, string password)
+        public SftpClient(SftpSettings settings)
         {
-            _internalClient = new Renci.SshNet.SftpClient(host, userName, password);
+            _internalClient = new Renci.SshNet.SftpClient(settings.Host, settings.UserName, settings.Password);
         }
         public void Connect()
         {
@@ -36,7 +36,7 @@ namespace NETToolBox.SFTPClient
         public async Task<List<string>> ListDirectoryAsync(string path)
         {
             var files = await _internalClient.ListDirectoryAsync(path).ConfigureAwait(false);
-            return files.Select(x => x.FullName).ToList();
+            return files.Select(x => x.FullName.Substring(1)).Where(x => !x.EndsWith(".")).ToList(); //we don't want to return . or .. and we don't want to return first / either
         }
 
         public Task UploadAsync(string path, Stream uploadStream)
